@@ -4,10 +4,10 @@
 
 ![Platforme Arduino Uno](figs/arduino-uno-dip-rev3.png)
 
-  * Voous devrez surement installer les paquets suivants (Linux): `arduino` ,
+  * Vous devrez surement installer les paquets suivants (Linux): `arduino` ,
 `gcc-avr` (or `avr-gcc`) et `avrdude` (`avr-binutils` et `avr-libc` s'ils ne sont pas inclus)
   * `avrdude.conf` doit se trouver dans `/usr/share/arduino/hardware/tools/` (sinon il faut modifier les Makefiles).
-  * L'utilisateur doit avoir le droit d'écrire sur le port USB :
+  * L'utilisateur doit avoir le droit d'écrire sur le port USB (plus besoin de le faire à priori) :
 `usermod -aG dialout <username>` (and re-login).
 
 
@@ -34,7 +34,8 @@ Tout d'abord, réalisons un circuit simple afin de tester le board:
 Le board doit être alimenté: la ligne bleu/noire sur la terre de
 l'arduino (GND) et la ligne rouge sur le +5V de l'arduino. Si vous
 brancher l'arduino sur un port USB de votre machine, la LED doit
-clignoter. **A partir de maintenant les schémas supposerons que ces deux connections sont établies**/
+clignoter. Attention, il faut utiliser une résistance de 220 ohm.
+**A partir de maintenant les schémas supposerons que ces deux connections sont établies**/
 
 ### LED sur le port Digital 13
 

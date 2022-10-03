@@ -29,7 +29,7 @@
 
 * Dans ce TP, vous implémenterez un ordonnanceur simple pour Arduino en utilisant des timers et des interruptions
 
-* Commencez par faire le [startup](_startup_part2.md)
+* Le [startup](_startup_part2.md) est à faire pour le Step 2, continuer avec le startup de la partie précédente pour le step 1
 
 ## Step 1 : 2 leds en parallèle, avec des timers
 
