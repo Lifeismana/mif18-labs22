@@ -9,5 +9,6 @@
 
 int main(){
   // TODO : boucle infinie active
+  while(1);
   return 0;
 }

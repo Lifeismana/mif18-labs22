@@ -71,17 +71,25 @@ int main(int argc, char** argv){
 
     //TODO: calculer waiting, le temps entre les deux derniers gettimeofday()
 
+    
+    waiting =(tv[cur_pos].tv_sec - tv[1-cur_pos].tv_sec)*1000000 + tv[cur_pos].tv_usec - tv[1-cur_pos].tv_usec;
+
     /* Si le temps entre les deux appels est grand, le processus a été désordonnancé */
     if (waiting > 500){
 
       //TODO: calculer elapsed, le temps pendant lequel le processus a tourné avant d'être désordonnancé
+
+      elapsed = (tv[1-cur_pos].tv_sec - begin.tv_sec)*1000000 + tv[1-cur_pos].tv_usec - begin.tv_usec;
       
       if (DEBUG){
+        printf("%8lu seconds, %lu seconds \n", tv[cur_pos].tv_sec, tv[1-cur_pos].tv_sec);
 	printf("I did not run during %8lu microseconds, I was elapsed during %lu microseconds\n", waiting, elapsed);
       }
       fprintf(mylogfile,"%lu,%lu\n", waiting, elapsed);
 
       //TODO: mettre à jour begin pour sauvegarder quand les calculs ont repris
+
+      begin = tv[cur_pos];
     }
 
     /* Changement de position dans le tableau à deux éléments */

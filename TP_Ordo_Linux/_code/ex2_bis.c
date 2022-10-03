@@ -25,6 +25,10 @@ void* work(void *useless){
 
     // TODO : boucle qui effectue NB_CALLS appels à sched_yield
     // (3 lignes)
+        for (int n = 0; n < NB_CALLS; n++)
+    {
+      sched_yield();
+    }
 
     gettimeofday(&endTime, NULL);
 

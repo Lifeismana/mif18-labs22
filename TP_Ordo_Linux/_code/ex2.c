@@ -20,6 +20,11 @@ int main(){
     gettimeofday(&startTime, NULL);
 
     // TODO : boucle qui effectue NB_CALLS appels à sched_yield
+    for (int n = 0; n < NB_CALLS; n++)
+    {
+      sched_yield();
+    }
+    
     // (3 lignes)
     
     gettimeofday(&endTime, NULL);

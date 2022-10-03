@@ -49,10 +49,15 @@ def parse_results(nbp):
     Y1=np.zeros([nbp, 1])
     Y2=np.zeros([nbp, 1])
 
+    
+
     for i in range (0, nbp):
         # Parser les resultats: on recupere les 20 premières lignes (sauf la premiere), au plus.
         # à la fin X[i] <-i, Y1[i] <- moyenne de waiting et Y2[i] <- moyenne elapsed
         # HINT : utiliser csv.DictReader
+        with open("output_"+str(i)+".csv") as f:
+        dic = csv.DictReader(f)
+        
     return (X, Y1, Y2)
 
 def plot(X, Y1, Y2):
