@@ -37,7 +37,7 @@ int main(void)
   while(1)
     { 
       change_state_led();
-      digitalWrite(a,LOW);
+      digitalWrite(led,LOW);
       _delay_ms(1000);
       
     }
