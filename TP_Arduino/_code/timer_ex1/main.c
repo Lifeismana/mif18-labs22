@@ -10,11 +10,14 @@ volatile int second = 0;
 void init_led_red(void)
 {
   // TODO : init, red led is on analog 0
+  DDRC |= PORTC1;
+
 }
 
 void init_led_yellow(void)
 {
   // TODO : init, yellow led on analog 1
+  DDRC |= PORTC2;
 }
 
 
@@ -29,6 +32,12 @@ void task_led_red(void)
 {
   // TODO : call to init for the red led
   // then blink, then wait (delay)
+  PORTC ^= PORTC1;
+  //PORTC ^= PORTC1;
+  delay(400); // Wait for 1000 millisecond(s)
+  PORTC ^= PORTC1;
+  //PORTC ^= PORTC1;
+  delay(400); // Wait for 1000 millisecond(s)
 }
 
 
@@ -39,11 +48,12 @@ ISR(TIMER2_OVF_vect)
     second+=1;
     int_counter = 0;
     // TODO : blink the yellow led
+    PORTC ^= PORTC2;
   } 
 }
 
 
-
+//TODO: avoir un code juste :D
 int main(void)
 {
   // TODO : init yellow led + timer.
@@ -52,6 +62,7 @@ int main(void)
   while(1)
     {
       // TODO : which task(s) ?
+      task_led_red()
     }
   
   return 0;

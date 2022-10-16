@@ -1,0 +1,65 @@
+#include <avr/io.h>
+#include <util/delay.h>
+#include <avr/interrupt.h> 	
+
+int int_counter = 0;
+volatile int second = 0;
+
+
+void init_timer(void)
+{
+  TCCR2B = 0b00000100; // Clock / 256 soit 16 micro-s et WGM22 = 0
+  TIMSK2 = 0b00000001; // Interruption locale autorisée par TOIE2
+}
+
+void init_led_red(void)
+{
+
+  DDRC |= _BV(0);
+}
+
+void init_led_yellow(void)
+{
+
+  DDRC |= _BV(1); // en fait je préfère la version 0b00000010; 
+}
+
+void task_led_red(void)
+{
+  // TODO : call to init for the red led
+  // then blink, then wait (delay)
+}
+
+
+ISR(TIMER2_OVF_vect)
+{
+  int_counter += 1;
+  if (int_counter == 400) { // around each second, blink the led
+    second+=1;
+    int_counter = 0;
+    // TODO : blink the yellow led
+    PORTC ^= PORTC1;
+  } 
+}
+
+// C++ code
+//
+void setup()
+{
+  cli();
+  DDRC |= PORTC2;
+  DDRC |= PORTC1;
+  init_timer();
+  sei();
+}
+
+
+void loop()
+{
+  PORTC ^= PORTC2;
+  //PORTC ^= PORTC1;
+  delay(200); // Wait for 1000 millisecond(s)
+  PORTC ^= PORTC2;
+  //PORTC ^= PORTC1;
+  delay(200); // Wait for 1000 millisecond(s)
+}
